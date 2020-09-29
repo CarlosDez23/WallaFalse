@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, Text } from "react-native";
 
 import colors from "../config/colors";
 import WallaCard from "../components/Card";
-import Contact from "../components/Contact";
+import ListItem from "../components/ListItem";
 
 function ListingDetailsScreen() {
   return (
@@ -13,7 +13,7 @@ function ListingDetailsScreen() {
         subTitle={"$100"}
         image={require("../assets/jacket.jpg")}
       />
-      <Contact
+      <ListItem
         name={"Mosh Hamedani"}
         listings={"5 listings"}
         image={require("../assets/mosh.jpg")}
