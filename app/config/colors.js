@@ -8,4 +8,6 @@ export default {
   medium: "#6e6969",
   lightgray: "#f8f4f4",
   danger: "#ff5252",
+  yellow: "#ffe66d",
+  darkgray: "#0c0c0c",
 };
