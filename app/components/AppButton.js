@@ -17,11 +17,11 @@ meter otro objeto que va a sobreescribir las propiedades que nosotros digamos de
 la stylesheet. Para seleccionarlo, accedemos dinámicamente a nuestro objeto colors 
 colors[loquetraecolor (variable)]
 */
-function WallaButton({ title, onPress, color = "primary" }) {
+function WallaButton({ title, onPress, color = "primary", style }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: colors[color] }]}
+        style={[styles.button, { backgroundColor: colors[color] }, style]}
         onPress={onPress}
       >
         <Text style={styles.text}>{title}</Text>
