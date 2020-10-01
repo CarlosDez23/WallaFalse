@@ -7,12 +7,12 @@ import {
   Modal,
   Button,
   FlatList,
-  Alert,
 } from "react-native";
 
 //Componentes
 import Screen from "./Screen";
 import PickerItem from "./PickerItem";
+import WallaButton from "./AppButton";
 
 //Iconos
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -88,19 +88,25 @@ function CustomPicker({
       </TouchableWithoutFeedback>
       <Modal visible={modalVisible} animationType="slide">
         <Screen /*Para que el botón no se salga de la pantalla*/>
-          <Button title="Close" onPress={() => setModalVisible(false)} />
-          <FlatList
-            data={items}
-            keyExtractor={(item) => item.value.toString()}
-            renderItem={({ item }) => (
-              <PickerItem
-                label={item.label}
-                onPress={() => {
-                  setModalVisible(false);
-                  onSelectItem(item);
-                }}
-              />
-            )}
+          <View>
+            <FlatList
+              data={items}
+              keyExtractor={(item) => item.value.toString()}
+              renderItem={({ item }) => (
+                <PickerItem
+                  label={item.label}
+                  onPress={() => {
+                    setModalVisible(false);
+                    onSelectItem(item);
+                  }}
+                />
+              )}
+            />
+          </View>
+          <WallaButton
+            title={"Close"}
+            onPress={() => setModalVisible(false)}
+            marginTop={20}
           />
         </Screen>
       </Modal>

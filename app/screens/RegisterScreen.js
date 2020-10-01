@@ -1,37 +1,38 @@
 import React from "react";
-import { Image, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet } from "react-native";
+//Formik y yup para el formulario
 import { Formik } from "formik";
 import * as Yup from "yup";
 
 //Componentes
 import Screen from "../components/Screen";
-/*Como hemos hecho una carpeta con todos los componentes de
-formularios y le hemos puesto un index en la carpeta en el que
-exportamos estos componentes, podemos importar estos componentes
-de esta forma poniendo como ruta la ruta de la carpeta que tiene
-el index.js*/
-import { AppFormField, SubmitButton, AppForm } from "../components/forms";
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
-//Para instalar formik (para formularios) --> npm i formik@2.1.4
-//Para instalar yup (validar formik) --> npm i yup
-
+//Esquema de validación del formulario
 const validationSchema = Yup.object().shape({
+  name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
-  password: Yup.string().required().min(4).label("Password"),
+  password: Yup.string().required().min(6).label("Password"),
 });
-
-function LoginScreen(props) {
+function RegisterScreen(props) {
   return (
     <Screen style={styles.container}>
-      <Image style={styles.logo} source={require("../assets/logo-red.png")} />
       <AppForm
         initialValues={{
+          name: "",
           email: "",
           password: "",
         }}
-        onSubmit={(values) => Alert.alert(values.toString())}
+        onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
+        <AppFormField
+          name="name"
+          icon="account"
+          placeholder="Name"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
         <AppFormField
           name="email"
           icon="email"
@@ -48,7 +49,9 @@ function LoginScreen(props) {
           autoCorrect={false}
           secureTextEntry
         />
-        <SubmitButton title={"Login"} />
+        <View style={styles.buttonContainer}>
+          <SubmitButton title={"Register"} />
+        </View>
       </AppForm>
     </Screen>
   );
@@ -58,13 +61,9 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
   },
-  logo: {
-    width: 80,
-    height: 80,
-    alignSelf: "center",
-    marginTop: 50,
-    marginBottom: 20,
+  buttonContainer: {
+    marginTop: 20,
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;
