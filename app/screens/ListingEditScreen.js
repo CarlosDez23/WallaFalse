@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet } from "react-native";
 
 import * as Yup from "yup";
@@ -12,6 +12,9 @@ import {
   AppFormPicker as Picker,
 } from "../components/forms";
 
+//Paleta de colores
+import colors from "../config/colors";
+
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().label("Title"),
   price: Yup.number().required().label("Price"),
@@ -23,14 +26,56 @@ const categories = [
   {
     label: "Furniture",
     value: "1",
+    color: "primary",
+    iconName: "floor-lamp",
   },
   {
-    label: "Clothing",
+    label: "Cars",
     value: "2",
+    color: "orange",
+    iconName: "car",
   },
   {
     label: "Cameras",
     value: "3",
+    color: "yellow",
+    iconName: "camera",
+  },
+  {
+    label: "Games",
+    value: "4",
+    color: "green",
+    iconName: "cards",
+  },
+  {
+    label: "Clothing",
+    value: "5",
+    color: "aquamarine",
+    iconName: "shoe-heel",
+  },
+  {
+    label: "Sports",
+    value: "6",
+    color: "blue",
+    iconName: "basketball",
+  },
+  {
+    label: "Movies & Music",
+    value: "7",
+    color: "darkblue",
+    iconName: "headphones",
+  },
+  {
+    label: "Books",
+    value: "8",
+    color: "purple",
+    iconName: "book-open-variant",
+  },
+  {
+    label: "Other",
+    value: "9",
+    color: "bluegray",
+    iconName: "ruler-square-compass",
   },
 ];
 function ListingEditScreen(props) {
@@ -54,6 +99,7 @@ function ListingEditScreen(props) {
         />
         <FormField
           name="price"
+          widthValue="45%"
           placeholder="Price"
           autoCapitalize="none"
           autoCorrect={false}
@@ -61,6 +107,7 @@ function ListingEditScreen(props) {
         />
         <Picker
           items={categories}
+          widthValue="60%"
           placeholder="Category"
           name="category"
           onSelectItem={(item) => setCategory(item)}

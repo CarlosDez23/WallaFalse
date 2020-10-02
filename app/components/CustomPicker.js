@@ -19,6 +19,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 //Nuestra paleta de colores
 import colors from "../config/colors";
+import ItemListRounded from "./ItemListRounded";
 /*
 Esto es lo que llamaría a este componente
 const categories = [
@@ -57,6 +58,7 @@ export default function App() {
 function CustomPicker({
   icon,
   items,
+  widthValue = "100%",
   placeholder,
   onSelectItem,
   selectedItem,
@@ -66,7 +68,7 @@ function CustomPicker({
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={styles.container}>
+        <View style={[styles.container, { width: widthValue }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -93,7 +95,9 @@ function CustomPicker({
               data={items}
               keyExtractor={(item) => item.value.toString()}
               renderItem={({ item }) => (
-                <PickerItem
+                <ItemListRounded
+                  color={item.color}
+                  iconName={item.iconName}
                   label={item.label}
                   onPress={() => {
                     setModalVisible(false);

@@ -18,9 +18,9 @@ personalizado*/
 /*Renderizamos solo si el icono esta definido (metemos un componente entre llaves
 y le ponemos la el nombre de la variable y un &&, considerando que si icon
 no viene vacío entonces se renderiza el icono si no no aparecerá nada*/
-function AppTextInput({ icon, ...otherProps }) {
+function AppTextInput({ icon, widthValue = "100%", ...otherProps }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: widthValue }]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
